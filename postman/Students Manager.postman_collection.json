@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "e8f2ea32-0ce5-4995-9837-6a452778ee48",
+		"name": "Students Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6012174"
+	},
+	"item": [
+		{
+			"name": "00 - Home - Hello World Message 😁",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basePath}}/",
+					"host": [
+						"{{basePath}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "01 - Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basePath}}/ping",
+					"host": [
+						"{{basePath}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02 - GET - All Students",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basePath}}/students",
+					"host": [
+						"{{basePath}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - GET - By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basePath}}/students/651cdaff1738b8308699b6ab",
+					"host": [
+						"{{basePath}}"
+					],
+					"path": [
+						"students",
+						"651cdaff1738b8308699b6ab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04 - POST - Create Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Test 2\",\n  \"lastName\": \"Test 2\",\n  \"email\": \"test@test.com2\",\n  \"username\": \"Test2\",\n  \"classID\": \"fasdfkkkf4490jfdikmn\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basePath}}/students",
+					"host": [
+						"{{basePath}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05 - PUT - Update Student Info",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Test 2\",\n  \"lastName\": \"Test 3\",\n  \"email\": \"test@test.com\",\n  \"username\": \"Test\",\n  \"classID\": \"9fffasdokfppoi9jh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{basePath}}/students/",
+					"host": [
+						"{{basePath}}"
+					],
+					"path": [
+						"students",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06 - DELETE - Remove By ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{basePath}}/students/650b4f32ffb783bf0a6814ba",
+					"host": [
+						"{{basePath}}"
+					],
+					"path": [
+						"students",
+						"650b4f32ffb783bf0a6814ba"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "local-url",
+			"value": "http://localhost:3000"
+		}
+	]
+}

@@ -1,0 +1,33 @@
+//LOCAL HOST
+### Get Students
+GET http://localhost:3000/students
+
+### Get Students by ID
+GET http://localhost:3000/students/651cdaff1738b8308699b6ab
+
+### Create Student
+POST http://localhost:3000/students HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Phillis",
+  "lastName": "Blades",
+  "email": "pbladesi@reuters.com",
+  "username": "PhillisBlades",
+  "classID": "CSE341"
+}
+
+### Update Student
+PUT http://localhost:3000/students/651cdaff1738b8308699b6ab HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Phillis Updated",
+  "lastName": "Blades Updated",
+  "email": "pbladesiUpdated@reuters.com",
+  "username": "PhillisBlades Updated",
+  "classID": "CSE341Updated"
+}
+
+### Delete Student
+DELETE http://localhost:3000/students/651cdaff1738b8308699b6ab
