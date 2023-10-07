@@ -8,7 +8,6 @@ const swaggerDocument = require('./swagger.json');
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
@@ -19,6 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', require('./routes'));
 
 process.on('uncaughtException', (err, origin) => {

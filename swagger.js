@@ -6,7 +6,7 @@ const doc = {
         description: "Students Manager API Information for CSE341 Class",
     },
     host: "students-manager-aaet.onrender.com",
-    schemes: ['http', 'https'],
+    schemes: ['https', 'http'],
 };
 
 const outputFile = './swagger.json';
