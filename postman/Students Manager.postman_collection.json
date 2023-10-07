@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "00 - Home - Hello World Message 😁",
+			"name": "00 - Hello World Message 😁  Root Path",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -63,13 +63,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{basePath}}/students/651cdaff1738b8308699b6ab",
+					"raw": "{{basePath}}/students/651cdaff1738b8308699b6a4",
 					"host": [
 						"{{basePath}}"
 					],
 					"path": [
 						"students",
-						"651cdaff1738b8308699b6ab"
+						"651cdaff1738b8308699b6a4"
 					]
 				}
 			},
@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Test 2\",\n  \"lastName\": \"Test 2\",\n  \"email\": \"test@test.com2\",\n  \"username\": \"Test2\",\n  \"classID\": \"fasdfkkkf4490jfdikmn\"\n}",
+					"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Test\",\n  \"email\": \"test@test.com\",\n  \"username\": \"testusername2\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -108,7 +108,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Test 2\",\n  \"lastName\": \"Test 3\",\n  \"email\": \"test@test.com\",\n  \"username\": \"Test\",\n  \"classID\": \"9fffasdokfppoi9jh\"\n}",
+					"raw": "{\n  \"firstName\": \"firstName Updated\",\n  \"lastName\": \"lastName Updated\",\n  \"email\": \"test@testUpdated.com\",\n  \"username\": \"TestUpdated\",\n  \"classID\": \"classID Updated\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,13 +116,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{basePath}}/students/",
+					"raw": "{{basePath}}/students/651cdaff1738b8308699b6ca",
 					"host": [
 						"{{basePath}}"
 					],
 					"path": [
 						"students",
-						""
+						"651cdaff1738b8308699b6ca"
 					]
 				}
 			},
@@ -134,13 +134,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{basePath}}/students/650b4f32ffb783bf0a6814ba",
+					"raw": "{{basePath}}/students/651cdaff1738b8308699b6c6",
 					"host": [
 						"{{basePath}}"
 					],
 					"path": [
 						"students",
-						"650b4f32ffb783bf0a6814ba"
+						"651cdaff1738b8308699b6c6"
 					]
 				}
 			},

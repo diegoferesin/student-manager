@@ -1,9 +1,12 @@
 //LOCAL HOST
+### Get Hello World message
+GET http://localhost:3000/
+
+### Get Ping Pong message
+GET http://localhost:3000/ping
+
 ### Get Students
 GET http://localhost:3000/students
-
-### Get Students by ID
-GET http://localhost:3000/students/651cdaff1738b8308699b6ab
 
 ### Create Student
 POST http://localhost:3000/students HTTP/1.1
@@ -16,6 +19,9 @@ Content-Type: application/json
   "username": "PhillisBlades",
   "classID": "CSE341"
 }
+
+### Get Students by ID
+GET http://localhost:3000/students/651cdaff1738b8308699b6ab
 
 ### Update Student
 PUT http://localhost:3000/students/651cdaff1738b8308699b6ab HTTP/1.1

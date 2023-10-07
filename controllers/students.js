@@ -1,91 +1,160 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
-const studentsCollection = 'students'
+const Student = require('../models/student');
+// const studentsCollection = 'students'
 
-const getStudents = async (req, res) => {
+const getStudents = (req, res) => {
     //#swagger.tags = ['Students']
-    const result = await mongodb.getDatabase().db().collection(studentsCollection).find();
-    result.toArray((err) => {
-        if (err) {
-            res.status(500).json({ message: err });
-        }
-    }).then((students) => {
-        res.setHeader('Content-Type', 'application/json');
+    console.log("Getting all students");
+    Student.find().then(students => {
+        console.log('Students found: ', students);
         res.status(200).json(students);
+    }
+    ).catch(err => {
+        console.log(err.message);
+        res.status(500).json({ message: err.message });
     });
 };
 
-const getStudentById = async (req, res) => {
+const getStudentById = (req, res) => {
     //#swagger.tags = ['Students']
+    console.log("Validating studentId");
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json("Must use a valid studentId to find a student.");
+        console.log({ message: "Must use a valid studentID to find a student." });
+        res.status(400).json({ message: "Must use a valid studentID to find a student." });
     }
-
-    const studentId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection(studentsCollection).find({ _id: studentId });
-    result.toArray().then((result) => {
-
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(result[0]);
-
-    }).catch((err) => {
-        res.status(500).json({ message: err });
-    });
+    const studentID = req.params.id;
+    console.log(`Getting student by ID: ${studentID}`);
+    Student.findById(studentID)
+        .then(student => {
+            if (student) {
+                console.log('Student found it:', student);
+                res.status(200).json(student);
+            } else {
+                console.log(`No student found with ID: ${studentID}`);
+                res.status(500).json({ message: `No student found with ID: ${studentID}` });
+            }
+        })
+        .catch(err => {
+            console.log(err.message);
+            res.status(500).json({ message: err.message });
+        });
 };
 
 const createStudent = async (req, res) => {
     //#swagger.tags = ['Students']
-    const student = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        username: req.body.username,
-        classID: req.body.classID
-    };
-    const response = await mongodb.getDatabase().db().collection(studentsCollection).insertOne(student);
-    if (response.acknowledged) {
-        res.status(201).send();
-    } else {
-        res.status(500).json(response.error || "Some error occurred while updating the student info");
+    const { firstName, lastName, email, username, classID } = req.body;
+    try {
+        console.log(`Validating student username: ${username}`);
+        findStudentByUsername(username).then((student) => {
+            if (student) {
+                console.log({ message: 'Username already exists.' });
+                res.status(400).json({ message: 'Username already exists.' });
+            } else {
+                console.log(`Creating student: ${firstName} ${lastName}`);
+                const student = new Student({
+                    firstName,
+                    lastName,
+                    email,
+                    username,
+                    classID
+                });
+                const newStudent = student.save();
+                res.status(201).json(newStudent);
+            }
+        });
+    }
+    catch (err) {
+        console.log(err.message);
+        res.status(400).json({ message: err.message });
     }
 };
 
 const updateStudentInfo = async (req, res) => {
     //#swagger.tags = ['Students']
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json("Must use a valid studenID to update a student.");
+        console.log({ message: "Must use a valid studentID to update a student." });
+        res.status(400).json({ message: "Must use a valid studentID to update a student." });
     }
 
-    const studentId = new ObjectId(req.params.id);
-    const student = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        username: req.body.username,
-        classID: req.body.classID
-    };
-    const response = await mongodb.getDatabase().db().collection(studentsCollection).replaceOne({ _id: studentId }, student);
-    if (response.modifiedCount > 0) {
-        res.status(204).send();
-    } else {
-        res.status(500).json(response.error || "Some error occurred while updating the student's info");
-    }
-};
+    let student = new Student({});
+    student._id = req.params.id;
+
+    const studentUpdated = validateAttributes(req, student);
+
+    console.log(`Getting student for update with ID: ${student._id}`);
+    Student.findByIdAndUpdate(student._id, studentUpdated, { new: true })
+        .then(updatedStudent => {
+            if (updatedStudent) {
+                console.log('Student updated: ', updatedStudent);
+                res.status(200).json(updatedStudent);
+            } else {
+                console.log(`No student found with ID: ${student._id} for update`);
+                res.status(400).json({ message: `No student found with ID: ${student._id} for update` });
+            }
+        })
+        .catch(err => {
+            console.log(err.message);
+            res.status(400).json({ message: err.message });
+        });
+
+}
 
 const deleteStudentById = async (req, res) => {
     //#swagger.tags = ['Students']
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json("Must use a valid studentID to delete a student.");
+        console.log({ message: "Must use a valid studentID to delete one." });
+        res.status(400).json({ message: "Must use a valid studentID to delete one." });
     }
 
-    const studentId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection(studentsCollection).deleteOne({ _id: studentId });
-    if (response.deletedCount > 0) {
+    try {
+        console.log(`Deleting student with ID: ${req.params.id}`);
+        const studentID = req.params.id;
+        const deletedStudent = await Student.findByIdAndRemove(studentID);
+        if (deletedStudent == null || !deletedStudent) {
+            console.log(deletedStudent);
+            res.status(404).json({ message: `No student found with ID: ${studentID} for delete` });;
+        }
+
+        console.log(`Student with ID: ${studentID} was removed`)
         res.status(204).send();
-    } else {
-        res.status(500).json(response.error || "Some error occurred while deleting the student");
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ message: err.message });
     }
 }
+
+function validateAttributes(req, studentToUpdate) {
+    if (req.body.firstName !== undefined && req.body.firstName !== '') {
+        studentToUpdate.firstName = req.body.firstName;
+    }
+
+    if (req.body.lastName !== undefined && req.body.lastName !== '') {
+        studentToUpdate.lastName = req.body.lastName;
+    }
+
+    if (req.body.email !== undefined && req.body.email !== '') {
+        studentToUpdate.email = req.body.email;
+    }
+
+    if (req.body.username !== undefined && req.body.username !== '') {
+        studentToUpdate.username = req.body.username;
+    }
+
+    if (req.body.classID !== undefined && req.body.classID !== '') {
+        studentToUpdate.classID = req.body.classID;
+    }
+    return studentToUpdate;
+}
+
+const findStudentByUsername = async (username) => {
+    try {
+        const student = await Student.findOne({ username });
+        return student;
+    } catch (error) {
+        throw new Error('Fail finding student by username: ' + error.message);
+    }
+};
 
 module.exports = {
     getStudents,
