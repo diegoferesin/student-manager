@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Test\",\n  \"email\": \"test@test.com\",\n  \"username\": \"testusername2\"\n}",
+					"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Test\",\n  \"email\": \"test@test.com\",\n  \"username\": \"testusername3\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
