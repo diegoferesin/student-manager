@@ -5,7 +5,7 @@
     "description": "Students Manager API Information for CSE341 Class",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "students-manager-aaet.onrender.com/",
   "basePath": "/",
   "schemes": [
     "http",
