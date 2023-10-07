@@ -5,7 +5,7 @@ const doc = {
         title: "Students Manager API",
         description: "Students Manager API Information for CSE341 Class",
     },
-    host: "https://students-manager-aaet.onrender.com",
+    host: "localhost:3000",
     schemes: ['http', 'https'],
 };
 

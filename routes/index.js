@@ -14,7 +14,7 @@ router.use('/students', require('./students'));
 router.use('/',
     (docData = (req, res) => {
         let docData = {
-            documentationURL: 'https://students-manager-aaet.onrender.com',
+            documentationURL: '',
         };
         res.send(docData);
     }));
