@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-// router.use('/api-docs', require('./swagger'));
+router.use('/api-docs', require('./swagger'));
 router.get('/', (req, res) => {
     //#swagger.tag=['Hello World]
     res.send('Hello World!');
@@ -11,5 +11,12 @@ router.get('/ping', (req, res) => {
 });
 
 router.use('/students', require('./students'));
+router.use('/',
+    (docData = (req, res) => {
+        let docData = {
+            documentationURL: 'https://students-manager-aaet.onrender.com',
+        };
+        res.send(docData);
+    }));
 
 module.exports = router;

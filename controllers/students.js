@@ -1,7 +1,6 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 const Student = require('../models/student');
-// const studentsCollection = 'students'
 
 const getStudents = (req, res) => {
     //#swagger.tags = ['Students']
