@@ -58,8 +58,13 @@ const createStudent = async (req, res) => {
                     username,
                     classID
                 });
-                const newStudent = student.save();
-                res.status(201).json(newStudent);
+                const newStudent = student.save().then((student) => {
+                    console.log();
+                    console.log('Student created successfully');
+                    console.log(`StudentID: ${student._id}`);
+                    console.log(`Username: ${student.username}`);
+                })
+                res.status(201).json(student);
             }
         });
     }
