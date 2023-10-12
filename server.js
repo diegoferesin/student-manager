@@ -44,7 +44,7 @@ passport.use(new GitHubStrategy({
     callbackURL: process.env.CALLBACK_URL
 },
     function (accessToken, refreshToken, profile, done) {
-        return cb(null, profile);
+        return done(null, profile);
     }
 ));
 
