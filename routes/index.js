@@ -26,6 +26,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.use('/students', require('./students'));
+router.use('/courses', require('./courses'));
 /*router.use('/',
     (docData = (req, res) => {
         let docData = {

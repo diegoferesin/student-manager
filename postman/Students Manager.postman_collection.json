@@ -7,6 +7,228 @@
 	},
 	"item": [
 		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "01 - GET - All Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basePath}}/students",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02 - GET - By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basePath}}/students/651cdaff1738b8308699b6a4",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"students",
+								"651cdaff1738b8308699b6a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03 - POST - Create Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Test\",\n  \"email\": \"test@test.com\",\n  \"username\": \"testusername14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basePath}}/students",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04 - PUT - Update Student Info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"firstName Updated\",\n  \"lastName\": \"lastName Updated\",\n  \"email\": \"test@testUpdated.com\",\n  \"username\": \"TestUpdated\",\n  \"classID\": \"classID Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basePath}}/students/651cdaff1738b8308699b6ca",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"students",
+								"651cdaff1738b8308699b6ca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05 - DELETE - Remove By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{basePath}}/students/651cdaff1738b8308699b6c6",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"students",
+								"651cdaff1738b8308699b6c6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "01 - GET - All Courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basePath}}/courses",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02 - GET - By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basePath}}/courses/652b213384e90b5d46e3a02b",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"courses",
+								"652b213384e90b5d46e3a02b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03 - POST - Create Course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"courseName\": \"Test\",\n  \"description\": \"Test\",\n  \"code\": \"test@test.com\",\n  \"duration\": \"testusername14\",\n  \"level\": \"level\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basePath}}/courses",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04 - PUT - Update Course Info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"courseName\": \"Test Updated\",\n  \"description\": \"Test Updated\",\n  \"code\": \"test@test.comupdated\",\n  \"duration\": \"testusername14 Updated\",\n  \"level\": \"level Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basePath}}/courses/652b26ac9acaf2d47359daf8",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"courses",
+								"652b26ac9acaf2d47359daf8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05 - DELETE - Remove By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{basePath}}/courses/652b213384e90b5d46e3a02c",
+							"host": [
+								"{{basePath}}"
+							],
+							"path": [
+								"courses",
+								"652b213384e90b5d46e3a02c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "00 - Hello World Message 😁  Root Path",
 			"request": {
 				"method": "GET",
@@ -41,106 +263,34 @@
 			"response": []
 		},
 		{
-			"name": "02 - GET - All Students",
+			"name": "02 - Login",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{basePath}}/students",
+					"raw": "{{basePath}}/login",
 					"host": [
 						"{{basePath}}"
 					],
 					"path": [
-						"students"
+						"login"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "03 - GET - By ID",
+			"name": "03 - Logout",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{basePath}}/students/651cdaff1738b8308699b6a4",
+					"raw": "{{basePath}}/logout",
 					"host": [
 						"{{basePath}}"
 					],
 					"path": [
-						"students",
-						"651cdaff1738b8308699b6a4"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "04 - POST - Create Student",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"Test\",\n  \"lastName\": \"Test\",\n  \"email\": \"test@test.com\",\n  \"username\": \"testusername3\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{basePath}}/students",
-					"host": [
-						"{{basePath}}"
-					],
-					"path": [
-						"students"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "05 - PUT - Update Student Info",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"firstName\": \"firstName Updated\",\n  \"lastName\": \"lastName Updated\",\n  \"email\": \"test@testUpdated.com\",\n  \"username\": \"TestUpdated\",\n  \"classID\": \"classID Updated\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{basePath}}/students/651cdaff1738b8308699b6ca",
-					"host": [
-						"{{basePath}}"
-					],
-					"path": [
-						"students",
-						"651cdaff1738b8308699b6ca"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "06 - DELETE - Remove By ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{basePath}}/students/651cdaff1738b8308699b6c6",
-					"host": [
-						"{{basePath}}"
-					],
-					"path": [
-						"students",
-						"651cdaff1738b8308699b6c6"
+						"logout"
 					]
 				}
 			},

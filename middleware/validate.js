@@ -29,6 +29,25 @@ const saveStudent = (req, res, next) => {
   });
 };
 
+const saveCourse = (req, res, next) => {
+  const validationRule = {
+    courseName: 'required|string',
+    code: 'required|string',
+    level: 'required|string',
+  };
+  validator(req.body, validationRule, {}, (err, status) => {
+    if (!status) {
+      res.status(412).send({
+        success: false,
+        message: 'Validation failed',
+        data: err
+      });
+    } else {
+      next();
+    }
+  });
+};
+
 const updateStudent = (req, res, next) => {
   const validationRule = {
     firstName: 'string',
@@ -49,7 +68,30 @@ const updateStudent = (req, res, next) => {
   }
 };
 
+const updateCourse = (req, res, next) => {
+  const validationRule = {
+    courseName: 'string',
+    description: 'string',
+    code: 'string',
+    duration: 'string',
+    level: 'string'
+  };
+
+  const validationResult = validateInput(req.body, validationRule);
+  if (!validationResult) {
+    res.status(412).send({
+      success: false,
+      message: 'Validation failed',
+      errors: 'At least one attribute should have a value'
+    });
+  } else {
+    next();
+  }
+};
+
 module.exports = {
   saveStudent,
-  updateStudent
+  updateStudent,
+  saveCourse,
+  updateCourse
 };

@@ -1,26 +1,28 @@
 const express = require('express');
 const router = express.Router();
 
-const studentsController = require('../controllers/students');
+const coursesController = require('../controllers/courses');
 const validation = require('../middleware/validate');
 const isAuthenticated = require('../middleware/authenticate');
 
 router.get('/',
     isAuthenticated,
-    studentsController.getStudents);
+    coursesController.getCourses);
 
 router.get('/:id',
     isAuthenticated,
-    studentsController.getStudentById);
+    coursesController.getCourseById);
 
 router.post('/',
     isAuthenticated,
-    validation.saveStudent, studentsController.createStudent);
+    validation.saveCourse,
+    coursesController.createCourse);
 router.put('/:id',
     isAuthenticated,
-    validation.updateStudent, studentsController.updateStudentInfo);
+    validation.updateCourse,
+    coursesController.updateCourseInfo);
 router.delete('/:id',
     isAuthenticated,
-    studentsController.deleteStudentById);
+    coursesController.deleteCourseById);
 
 module.exports = router;
