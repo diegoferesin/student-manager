@@ -42,7 +42,7 @@ const getStudentById = (req, res) => {
 
 const createStudent = async (req, res) => {
     //#swagger.tags = ['Students']
-    const { firstName, lastName, email, username, classID } = req.body;
+    const { firstName, lastName, email, username, classID, birthDate, location } = req.body;
     try {
         console.log(`Validating student username: ${username}`);
         findStudentByUsername(username).then((student) => {
@@ -56,7 +56,9 @@ const createStudent = async (req, res) => {
                     lastName,
                     email,
                     username,
-                    classID
+                    classID,
+                    birthDate,
+                    location
                 });
                 const newStudent = student.save().then((student) => {
                     console.log();
@@ -148,6 +150,15 @@ function validateAttributes(req, studentToUpdate) {
     if (req.body.classID !== undefined && req.body.classID !== '') {
         studentToUpdate.classID = req.body.classID;
     }
+
+    if (req.body.birthDate !== undefined && req.body.birthDate !== '') {
+        studentToUpdate.birthDate = req.body.birthDate;
+    }
+
+    if (req.body.location !== undefined && req.body.location !== '') {
+        studentToUpdate.location = req.body.location;
+    }
+
     return studentToUpdate;
 }
 

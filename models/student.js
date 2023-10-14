@@ -6,6 +6,8 @@ const studentSchema = new mongoose.Schema({
     email: String,
     username: String,
     classID: String,
+    birthDate: String,
+    location: String,
 });
 
 studentSchema.set('toJSON', {
