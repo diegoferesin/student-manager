@@ -6,7 +6,7 @@ const getCourses = (req, res) => {
     //#swagger.tags = ['Courses']
     console.log("Getting all courses");
     Courses.find().then(courses => {
-        console.log('Courses found: ', courses);
+        console.log('Courses found');
         res.status(200).json(courses);
     }
     ).catch(err => {
@@ -95,8 +95,8 @@ const updateCourseInfo = async (req, res) => {
 const deleteCourseById = async (req, res) => {
     //#swagger.tags = ['Courses']
     if (!ObjectId.isValid(req.params.id)) {
-        console.log({ message: "Must use a valid courseID to delete one." });
-        res.status(400).json({ message: "Must use a valid courseID to delete one." });
+        console.log("Must use a valid courseID to delete one.");
+        return res.status(400).json({ message: "Must use a valid courseID to delete one." });
     }
 
     try {
@@ -104,15 +104,19 @@ const deleteCourseById = async (req, res) => {
         const courseID = req.params.id;
         const deletedCourse = await Courses.findByIdAndRemove(courseID);
         if (deletedCourse == null || !deletedCourse) {
+            if (deletedCourse == null) {
+                console.log(`No course found with ID: ${courseID} for delete`);
+                return res.status(404).json({ message: `No course found with ID: ${courseID} for delete` });;
+            }
             console.log(deletedCourse);
-            res.status(404).json({ message: `No course found with ID: ${courseID} for delete` });;
+            return res.status(404).json({ message: `No course found with ID: ${courseID} for delete` });;
         }
 
-        console.log(`course with ID: ${courseID} was removed`)
-        res.status(204).send();
+        console.log(`Course with ID: ${courseID} was removed`)
+        return res.status(204).send();
     } catch (err) {
         console.log(err.message);
-        res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: err.message });
     }
 }
 

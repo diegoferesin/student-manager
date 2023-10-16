@@ -6,23 +6,23 @@ const validation = require('../middleware/validate');
 const isAuthenticated = require('../middleware/authenticate');
 
 router.get('/',
-    isAuthenticated,
+    // isAuthenticated,
     coursesController.getCourses);
 
 router.get('/:id',
-    isAuthenticated,
+    // isAuthenticated,
     coursesController.getCourseById);
 
 router.post('/',
-    isAuthenticated,
+    // isAuthenticated,
     validation.saveCourse,
     coursesController.createCourse);
 router.put('/:id',
-    isAuthenticated,
+    // isAuthenticated,
     validation.updateCourse,
     coursesController.updateCourseInfo);
 router.delete('/:id',
-    isAuthenticated,
+    // isAuthenticated,
     coursesController.deleteCourseById);
 
 module.exports = router;
