@@ -32,6 +32,36 @@
         }
       }
     },
+    "/logout-message": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/students/": {
       "get": {
         "tags": [
@@ -75,6 +105,15 @@
                   "example": "any"
                 },
                 "classID": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "birthDate": {
                   "example": "any"
                 }
               }
@@ -176,6 +215,145 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/courses/": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Courses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "courseName": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "code": {
+                  "example": "any"
+                },
+                "duration": {
+                  "example": "any"
+                },
+                "level": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        }
+      }
+    },
+    "/courses/{id}": {
+      "get": {
+        "tags": [
+          "Courses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Courses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Courses"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
