@@ -42,7 +42,7 @@ const getStudentById = (req, res) => {
 
 const createStudent = async (req, res) => {
     //#swagger.tags = ['Students']
-    const { firstName, lastName, email, username, classID, birthDate, location } = req.body;
+    const { firstName, lastName, email, username, classID, location, gender, birthDate } = req.body;
     try {
         console.log(`Validating student username: ${username}`);
         findStudentByUsername(username).then((student) => {
@@ -57,8 +57,9 @@ const createStudent = async (req, res) => {
                     email,
                     username,
                     classID,
+                    location,
+                    gender,
                     birthDate,
-                    location
                 });
                 const newStudent = student.save().then((student) => {
                     console.log();
